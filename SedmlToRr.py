@@ -553,10 +553,13 @@ def generateOutputs(sedmlDoc, dataGeneratorsList):
                 if output.getNumCurves() > 0:
                     allX = []
                     allY = []
-                    for k in range(0, output.getNumCurves()):
-                        curve = output.getCurve(k)
+                    for m in range(0, output.getNumCurves()):
+                        curve = output.getCurve(m)
                         xDataReference = curve.getXDataReference()
                         yDataReference = curve.getYDataReference()
+                        for k, v in mapping:
+                            xDataReference = xDataReference.replace(k, v)
+                            yDataReference = yDataReference.replace(k, v)
                         if not len(dataGeneratorsList) == 0:
                             allX.append(xDataReference + "_" + str(i))
                             allY.append(yDataReference + "_" + str(i))
@@ -621,11 +624,15 @@ def generateOutputs(sedmlDoc, dataGeneratorsList):
                     allX = []
                     allY = []
                     allZ = []
-                    for k in range(0, output.getNumSurfaces()):
-                        surface = output.getSurface(k)
+                    for m in range(0, output.getNumSurfaces()):
+                        surface = output.getSurface(m)
                         xDataReference = surface.getXDataReference()
                         yDataReference = surface.getYDataReference()
                         zDataReference = surface.getZDataReference()
+                        for k, v in mapping:
+                            xDataReference = xDataReference.replace(k, v)
+                            yDataReference = yDataReference.replace(k, v)
+                            zDataReference = zDataReference.replace(k, v)
                         if not len(dataGeneratorsList) == 0:
                             allX.append(xDataReference + "_" + str(i))
                             allY.append(yDataReference + "_" + str(i))
